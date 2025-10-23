@@ -1,6 +1,10 @@
 // TODO: osモジュールインポート
-// req
-const os = require('os');
+// ES5形式でosモジュールをインポート
+// reqって打つ
+// const os = require('os');
+// ES6形式でosモジュールをインポート
+// impって打つ
+import os from 'os';
 
 // OS情報取得
 const type = os.type();
