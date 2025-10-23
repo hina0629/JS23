@@ -7,14 +7,15 @@
  * モジュール読み込み（CommonJS）
  */
 // TODO: fs モジュールを読み込む: CommonJS形式
-
+const fs = require('fs');
 // TODO: path モジュールを読み込む: CommonJS形式
+const path = require('path');
 
 /**
  * ファイル読み込み処理
  */
 // TODO: 現在のディレクトリパスから、data/products.json を指定
-const filePath = "";
+const filePath = path.join(__dirname, 'data', 'products.json');
 
 // 1) 最初に実行
 console.log("📖 ファイル読み込み開始（同期）...");
@@ -22,7 +23,7 @@ console.log("📖 ファイル読み込み開始（同期）...");
 try {
     // 2) 同期でファイル読み込み
     // TODO: readFileSync(パス, 文字コード)
-    const data = {};
+    const data = fs.readFileSync(filePath, 'utf-8');
 
     // 3) 読み込み完了後に実行
     show(data);
