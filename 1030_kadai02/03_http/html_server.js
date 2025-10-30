@@ -47,6 +47,12 @@ const server = http.createServer((req, res) => {
     if (pathname === "/") pathname = "/index.html";
 
     // 番外編: /api/list アクセス時: execLS()
+    if (pathname === "/api/list") {
+        // コマンド実行
+        execLS(res);
+        // 処理終了
+        return;
+    }
 
     // アクセスファイルの絶対パス
     // public/xxxxx.xxx
@@ -75,10 +81,10 @@ const server = http.createServer((req, res) => {
         const mime = mimeTypes[ext] || "application/octet-stream";
 
         // TODO: 番外編: 動的コンテンツ処理(.php, .pyの場合） 
-        // if (ext === ".php" || ext === ".py") {
-        //     execFile(ext, filePath, res);
-        //     return;
-        // }
+        if (ext === ".php" || ext === ".py") {
+            execFile(ext, filePath, res);
+            return;
+        }
 
         // TODO: 200 OK
         res.writeHead(200, { "Content-Type": mime });
