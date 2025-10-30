@@ -1,8 +1,13 @@
 // TODO: httpモジュールをインポート: import
+import http from 'http';
 
-// TODO: HTTPサーバ作成: http.createServer()
+// TODO: HTTPサーバ作成: http.createServer(コールバック関数(サーバーでリクエストがあったときに発動))
+const server = http.createServer((req, res) => {
     // ---- ここから記述 ----
-    // TODO: ヘッダー
+    // TODO: レスポンスヘッダー
+    res.writeHead(200, {
+        'Content-Type': 'application/json; charset=utf-8'
+    });
 
     // データ作成
     const data = {
@@ -13,14 +18,17 @@
     const json = JSON.stringify(data, null, 2);
 
     // TODO: JSONレスポンス
+    res.write(json);
 
     // TODO: レスポンス終了
+    res.end();
     // ---- ここまで記述 ----
+});
 
-// TODO: サーバホスト: localhost
-const HOST = "";
+// TODO: サーバホスト: localhost (自分のパソコン)
+const HOST = "localhost"; // 127.0.0.1
 // TODO: サーバポート: 3000
-const PORT = 0;
+const PORT = 3000;
 
 // TODO: サーバ起動
 console.log(`🚀 Server running at http://${HOST}:${PORT}`);
